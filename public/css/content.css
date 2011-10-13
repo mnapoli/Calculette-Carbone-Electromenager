@@ -1,0 +1,80 @@
+@CHARSET "UTF-8";
+
+/**
+ * @author Matthieu Napoli
+ * 
+ * This file is part of the program "Calculette Carbone Electromenager"
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the Lesser GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  Lesser GNU General Public License for more details.
+ *
+ *  You should have received a copy of the Lesser GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#catalog {
+    position: absolute;
+    width: 50%;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    background-color: #AAAAAA;
+}
+#basket {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    bottom: 0;
+    right: 0;
+    background-color: #BBBBBB;
+}
+#catalog ul, #basket ul {
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+#catalog li, #basket li {
+    list-style-type: none;
+}
+
+#header {
+    position: absolute;
+    top: 0;
+    height: 200px;
+    width: 100%;
+}
+#total {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+#totalEmission {
+    color: white;
+    background-color: #93B876;
+    padding: 7px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.item {
+    z-index: 255;
+    float: left;
+    margin: 3px 3px 3px 0;
+    padding: 1px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+.item img {
+    max-width: 90px;
+    max-height: 90px;
+}

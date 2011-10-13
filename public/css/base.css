@@ -1,0 +1,130 @@
+@CHARSET "UTF-8";
+
+/**
+ * @author Matthieu Napoli
+ * 
+ * This file is part of the program "Calculette Carbone Electromenager"
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the Lesser GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  Lesser GNU General Public License for more details.
+ *
+ *  You should have received a copy of the Lesser GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+body {
+    margin: 0;
+    color: #333333;
+    font-family: 'Lucida Grande',Verdana,Helvetica,sans-serif;
+    font-size: 0.9em;
+}
+
+h1 {
+    color: #93B876;
+    padding-bottom: 40px;
+    border-bottom: dotted 1px #93B876;
+    font-family: Georgia,'Times New Roman',Times,serif;
+    font-weight: normal;
+    font-size: 3.1em;
+    text-align: right;
+}
+h2 {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    padding-left: 10px;
+    border-bottom: solid 1px #999999;
+    font-size: 1.4em;
+    font-variant: small-caps;
+}
+h2 .routesButtons {
+    float: right;
+    font-size: 0.5em;
+    font-variant: normal;
+}
+
+a {
+    color: #AE855C;
+}
+a img {
+    text-decoration: none;
+}
+
+li {
+    margin-bottom: 10px;
+    margin-left: 20px;
+    list-style: disc outside;
+}
+
+#menu {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 30px;
+    background-color: #93B876;
+    color: white;
+    font-size: 13px;    
+}
+#menu h1 {
+    position: absolute;
+    font-weight: normal;
+    font-size: 27px;
+    right: 0;
+    margin-right: 2px;
+    border: none;
+    padding: 0;
+    color: inherit;
+}
+#menu a {
+    display: block;
+    height: 30px;
+    float: left;
+    padding-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    text-decoration: none;
+    border-left: solid 1px #E3EBDD;
+}
+#menu a.first {
+    border-left: none;
+}
+#menu a:hover {
+    background-color: grey;
+}
+#menu a.share {
+    border-left: none;
+}
+
+#userGuide {
+    display: none;
+}
+
+#about {
+    display: none;
+}
+
+#userGuide {
+    display: none;
+}
+
+/*================================*/
+/*          Message Box           */
+/*================================*/
+
+#messagebox {
+    display: none;
+}
+
+.ui-dialog-content p {
+    margin: 15px 0px;
+    line-height: 1.3em;
+}

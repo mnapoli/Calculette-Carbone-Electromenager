@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css"
+        href="jquery-ui-1.8.14.custom/css/custom-theme/jquery-ui-1.8.14.custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/content.css" />
+
+    <script type="text/javascript" src="js/json2.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.store.js"></script>
+    <script type="text/javascript"
+        src="jquery-ui-1.8.14.custom/js/jquery-ui-1.8.14.custom.min.js"></script>
+    
+    <script type="text/javascript" src="js/messagebox.js"></script>
+    <script type="text/javascript" src="js/misc.js"></script>
+    
+	<title>Calculette Carbone Voyage</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+    /**
+     * @author Matthieu Napoli
+     * 
+     * This file is part of the program "Calculette Carbone Electromenager
+     * 
+     *  This program is free software: you can redistribute it and/or modify
+     *  it under the terms of the Lesser GNU General Public License as published by
+     *  the Free Software Foundation, either version 3 of the License, or
+     *  any later version.
+     *
+     *  This program is distributed in the hope that it will be useful,
+     *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+     *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     *  Lesser GNU General Public License for more details.
+     *
+     *  You should have received a copy of the Lesser GNU General Public License
+     *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+     */
+    </script>
+
+    <div id="messagebox"></div>
+
+    <div id="menu">
+        <h1>Calculette carbone électroménager</h1>
+        <a href="http://chiffres-carbone.fr" id="chiffresCarbone" class="first"
+            title="Retour sur chiffres-carbone.fr">
+            <strong>Chiffres-carbone.fr</strong></a>
+        <a href="#" id="userGuideLink" title="Aide utilisateur de la calculette carbone électroménager">
+            Aide utilisateur</a>
+        <a href="#"
+            title="Détails des calculs de la calculette carbone électroménager">
+            Détails des calculs</a>
+        <a href="#" id="aboutLink" title="À propos de la calculette carbone électroménager">
+            À propos</a>
+        <a href="http://www.facebook.com/share.php?u=http://electromenager.chiffres-carbone.fr/"
+            class="share" style="margin-left: 60px" title="Partager sur Facebook">
+            <img src="img/facebook-small.png" alt="Facebook" /></a>
+    </div>
+
+    <div id="userGuide">
+        <p>
+            Article en cours de rédaction
+        </p>
+    </div>
+
+    <div id="about">
+        <p>
+            Article en cours de rédaction
+        </p>
+    </div>
+    
+    <div id="catalog">
+        <ul class="dragAndDrop">
+            <li class="item ui-state-default">
+                <img src="img/catalog/fridge.png" />
+            </li>
+            <li class="item ui-state-default">
+                <img src="img/catalog/fridge.png" />
+            </li>
+            <li class="item ui-state-default">
+                <img src="img/catalog/fridge.png" />
+            </li>
+        </ul>
+        <ul class="dragAndDrop">
+            <li class="item ui-state-default">
+                <img src="img/catalog/fridge.png" />
+            </li>
+            <li class="item ui-state-default">
+                <img src="img/catalog/fridge.png" />
+            </li>
+            <li class="item ui-state-default">
+                <img src="img/catalog/fridge.png" />
+            </li>
+        </ul>
+    </div>
+
+    <div id="basket">
+        <ul class="dragAndDrop">
+            <li class="item ui-state-default">
+                <img src="img/catalog/fridge.png" />
+            </li>
+        </ul>
+    </div>
+    
+    <div id="total">
+        <h2>Émission totale</h2>
+        <p id="totalEmission">0 kg équivalent CO&#8322;</p>
+    </div>
+	
+	<script type="text/javascript">
+		
+		// Initialization
+		$(document).ready(function() {
+            // User guide
+            $("#userGuideLink").click(function() {
+                $("#userGuide").dialog({
+                    title: "Aide utilisateur de la calculette carbone électroménager",
+                    show: "fade",
+                    hide: "fade",
+                    modal: true,
+                    minWidth: 600
+                });
+                return false;
+            });
+            // About
+            $("#aboutLink").click(function() {
+                $("#about").dialog({
+                    title: "À propos de la calculette carbone électroménager",
+                    show: "fade",
+                    hide: "fade",
+                    modal: true,
+                    minWidth: 600
+                });
+                return false;
+            });
+		    // Storage
+            $.storage = new $.store();
+            if ($.storage.driver.scope != "browser") {
+                messageBox("Votre navigateur ne supporte pas l'enregistrement des données."
+                    +" Votre bilan carbone sera donc perdu une fois que vous quitterez le site.");
+            }
+            // Drag and drop
+            /*$(".item").draggable({
+                helper:'clone',
+                start: function(event, ui) {
+                    //$(this).data("originalPosition", $(this).position());
+                }
+            });
+            $("#basket").droppable({
+                accept: ".item",
+                drop: function (event, ui) {
+                    $(this).effect('highlight', {}, 500, function() {});
+                    $(this).append($(ui.helper).clone(true));
+                }
+            });*/
+            // Sortable
+            $("#catalog ul, #basket ul").sortable({
+                connectWith: ".dragAndDrop",
+                revert: true,
+                scroll: false
+            });
+            $("#catalog ul, #basket ul").disableSelection();
+		});
+		
+	</script>
+	
+</body>
+
+</html>
