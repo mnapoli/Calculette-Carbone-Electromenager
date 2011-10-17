@@ -17,6 +17,8 @@
     
     <script type="text/javascript" src="js/messagebox.js"></script>
     <script type="text/javascript" src="js/misc.js"></script>
+    <script type="text/javascript" src="js/items.js"></script>
+    <script type="text/javascript" src="js/total.js"></script>
     
 	<title>Calculette Carbone Voyage</title>
 </head>
@@ -49,7 +51,7 @@
         <h1>Calculette carbone électroménager</h1>
         <a href="http://chiffres-carbone.fr" id="chiffresCarbone" class="first"
             title="Retour sur chiffres-carbone.fr">
-            <strong>Chiffres-carbone.fr</strong></a>
+            <strong style="font-size: 1.2em">Chiffres-carbone.fr</strong></a>
         <a href="#" id="userGuideLink" title="Aide utilisateur de la calculette carbone électroménager">
             Aide utilisateur</a>
         <a href="#"
@@ -76,40 +78,19 @@
     
     <div id="catalog">
         <ul class="dragAndDrop">
-            <li class="item ui-state-default">
-                <img src="img/catalog/fridge.png" />
-            </li>
-            <li class="item ui-state-default">
-                <img src="img/catalog/fridge.png" />
-            </li>
-            <li class="item ui-state-default">
-                <img src="img/catalog/fridge.png" />
-            </li>
-        </ul>
-        <ul class="dragAndDrop">
-            <li class="item ui-state-default">
-                <img src="img/catalog/fridge.png" />
-            </li>
-            <li class="item ui-state-default">
-                <img src="img/catalog/fridge.png" />
-            </li>
-            <li class="item ui-state-default">
-                <img src="img/catalog/fridge.png" />
-            </li>
         </ul>
     </div>
 
     <div id="basket">
         <ul class="dragAndDrop">
-            <li class="item ui-state-default">
-                <img src="img/catalog/fridge.png" />
-            </li>
         </ul>
     </div>
     
     <div id="total">
         <h2>Émission totale</h2>
-        <p id="totalEmission">0 kg équivalent CO&#8322;</p>
+        <div id="totalEmissionBlock">
+            <p id="totalEmission">0 kg équivalent CO&#8322; par an</p>
+        </div>
     </div>
 	
 	<script type="text/javascript">
@@ -144,27 +125,34 @@
                 messageBox("Votre navigateur ne supporte pas l'enregistrement des données."
                     +" Votre bilan carbone sera donc perdu une fois que vous quitterez le site.");
             }
-            // Drag and drop
-            /*$(".item").draggable({
-                helper:'clone',
-                start: function(event, ui) {
-                    //$(this).data("originalPosition", $(this).position());
-                }
-            });
-            $("#basket").droppable({
-                accept: ".item",
-                drop: function (event, ui) {
-                    $(this).effect('highlight', {}, 500, function() {});
-                    $(this).append($(ui.helper).clone(true));
-                }
-            });*/
             // Sortable
-            $("#catalog ul, #basket ul").sortable({
+            $("#catalog ul").sortable({
                 connectWith: ".dragAndDrop",
                 revert: true,
-                scroll: false
+                scroll: false,
+                tolerance: 'pointer'
+            });
+            $("#basket ul").sortable({
+                connectWith: ".dragAndDrop",
+                revert: true,
+                scroll: false,
+                tolerance: 'pointer',
+                update: function(event, ui) {
+                    var total = 0.0;
+                    $(this).children("li").each(function(index) {
+                        var id = $(this).attr('id');
+                        total += findItemById(id).emissionFactor;
+                    });
+                    setTotalEmission(total);
+                }
             });
             $("#catalog ul, #basket ul").disableSelection();
+            // Items
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                $("#catalog ul").append('<li id="'+item.id+'" class="item ui-state-default"><img src="img/catalog/'
+                    +item.image+'" /><p>'+item.name+'</p></li>');
+            }
 		});
 		
 	</script>
