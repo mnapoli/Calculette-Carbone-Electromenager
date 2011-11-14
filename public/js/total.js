@@ -1,8 +1,8 @@
 /**
  * @author Matthieu Napoli
- * 
+ *
  * This file is part of the program "Calculette Carbone Electromenager"
- * 
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the Lesser GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -22,7 +22,7 @@
  * @param total
  */
 function setTotalEmission(total) {
-    total = total / 1000.;
-    $("#totalEmission").html(total.toFixed(2)+" kg équivalent CO&#8322; par an");
+    total = total;
+    $("#totalEmission").html(total.toFixed(1)+" kg équivalent CO&#8322; par an");
     $("#totalEmission").effect("shake");
 }

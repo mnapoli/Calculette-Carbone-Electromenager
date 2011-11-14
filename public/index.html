@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    
+
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css"
         href="jquery-ui-1.8.14.custom/css/custom-theme/jquery-ui-1.8.14.custom.css" />
@@ -14,22 +14,22 @@
     <script type="text/javascript" src="js/jquery.store.js"></script>
     <script type="text/javascript"
         src="jquery-ui-1.8.14.custom/js/jquery-ui-1.8.14.custom.min.js"></script>
-    
+
     <script type="text/javascript" src="js/messagebox.js"></script>
     <script type="text/javascript" src="js/misc.js"></script>
     <script type="text/javascript" src="js/items.js"></script>
     <script type="text/javascript" src="js/total.js"></script>
-    
-	<title>Calculette Carbone Voyage</title>
+
+	<title>Calculette Carbone Électroménager</title>
 </head>
 <body>
 
     <script type="text/javascript">
     /**
      * @author Matthieu Napoli
-     * 
+     *
      * This file is part of the program "Calculette Carbone Electromenager
-     * 
+     *
      *  This program is free software: you can redistribute it and/or modify
      *  it under the terms of the Lesser GNU General Public License as published by
      *  the Free Software Foundation, either version 3 of the License, or
@@ -75,7 +75,7 @@
             Article en cours de rédaction
         </p>
     </div>
-    
+
     <div id="catalog">
         <ul class="dragAndDrop">
         </ul>
@@ -85,16 +85,16 @@
         <ul class="dragAndDrop">
         </ul>
     </div>
-    
+
     <div id="total">
         <h2>Émission totale</h2>
         <div id="totalEmissionBlock">
             <p id="totalEmission">0 kg équivalent CO&#8322; par an</p>
         </div>
     </div>
-	
+
 	<script type="text/javascript">
-		
+
 		// Initialization
 		$(document).ready(function() {
             // User guide
@@ -150,13 +150,22 @@
             // Items
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
-                $("#catalog ul").append('<li id="'+item.id+'" class="item ui-state-default"><img src="img/catalog/'
+                var cssClass;
+                if (item.emissionFactor >= 20.) {
+                    cssClass = 'item red';
+                } else if (item.emissionFactor >= 10.) {
+                    cssClass = 'item orange';
+                } else {
+                    cssClass = 'item green';
+                }
+                $("#catalog ul").append('<li id="'+item.id+'" class="'+cssClass+'">'
+                    +'<img src="img/catalog/'
                     +item.image+'" /><p>'+item.name+'</p></li>');
             }
 		});
-		
+
 	</script>
-	
+
 </body>
 
 </html>
