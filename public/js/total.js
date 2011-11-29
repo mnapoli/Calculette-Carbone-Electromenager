@@ -18,11 +18,14 @@
  */
 
 /**
- * Set the total label
+ * Update the total label
  * @param total
  */
-function setTotalEmission(total) {
-    total = total;
+function updateTotalEmission(basket) {
+    var total = 0.0;
+    basket.children("li").each(function(index) {
+        var id = $(this).attr('id');
+        total += findItemById(id).emissionFactor;
+    });
     $("#totalEmission").html(total.toFixed(1)+" kg équivalent CO&#8322; par an");
-    $("#totalEmission").effect("shake");
 }

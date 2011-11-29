@@ -138,30 +138,33 @@
                 scroll: false,
                 tolerance: 'pointer',
                 update: function(event, ui) {
-                    var total = 0.0;
-                    $(this).children("li").each(function(index) {
-                        var id = $(this).attr('id');
-                        total += findItemById(id).emissionFactor;
-                    });
-                    setTotalEmission(total);
+                    updateTotalEmission($(this));
                 }
             });
             $("#catalog ul, #basket ul").disableSelection();
-            // Items
+            // Load items
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 var cssClass;
                 if (item.emissionFactor >= 20.) {
-                    cssClass = 'item red';
+                    cssClass = 'red';
                 } else if (item.emissionFactor >= 10.) {
-                    cssClass = 'item orange';
+                    cssClass = 'orange';
                 } else {
-                    cssClass = 'item green';
+                    cssClass = 'green';
                 }
-                $("#catalog ul").append('<li id="'+item.id+'" class="'+cssClass+'">'
-                    +'<img src="img/catalog/'
-                    +item.image+'" /><p>'+item.name+'</p></li>');
+                if (item.defaultRight == true) {
+                    $("#basket ul").append('<li id="'+item.id+'" class="item">'
+                        +'<img src="img/catalog/'
+                        +item.image+'" /><p class="'+cssClass+'">'+item.name+'</p></li>');
+                } else {
+                    $("#catalog ul").append('<li id="'+item.id+'" class="item">'
+                        +'<img src="img/catalog/'
+                        +item.image+'" /><p class="'+cssClass+'">'+item.name+'</p></li>');
+                }
             }
+            // Update total
+            updateTotalEmission($("#basket ul"));
 		});
 
 	</script>

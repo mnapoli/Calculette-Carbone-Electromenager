@@ -74,18 +74,26 @@
 .item {
     z-index: 255;
     float: left;
-    margin: 10px;
+    margin: 5px;
     padding: 1px;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     text-align: center;
+    background-color: #f6f5f5;
+    border-radius: 3px;
+    position: relative;
 }
 .item img {
-    max-width: 90px;
-    max-height: 80px;
+    max-width: 85px;
+    max-height: 65px;
 }
 .item p {
-    font-size: 12px;
+    position: absolute;
+    bottom: 1px;
+    font-size: 11px;
+    border-radius: 3px;
+    padding-bottom: 1px;
+    width: 90px;
 }
 .red {
     background-color: #ffcccc;
